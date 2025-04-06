@@ -1,0 +1,32 @@
+{
+  "name": "authentication2.0",
+  "version": "1.0.0",
+  "description": "full working authentication",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qs-ashish05/Authentication2.0.git"
+  },
+  "author": "Aashish Jha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qs-ashish05/Authentication2.0/issues"
+  },
+  "homepage": "https://github.com/qs-ashish05/Authentication2.0#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "nodemailer": "^6.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
