@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import bcrypt from "bcryptjs"
 
 
 const userSchema = new mongoose.Schema({
@@ -34,13 +35,25 @@ const userSchema = new mongoose.Schema({
         type: Date
     },
 
-
-
 }, 
 {
     timestamps: true,
 })
 
+// password hashing usinh mongoose hooks
+// pre means change this before
+//this can be considered as middleware 
+userSchema.pre("save", async function (next) {
+    if(this.isModified("password")){
+    // either we can use the bcrypt.genSalt() method that we can use to gnerate salt value and pass that value into the below, 
+    this.password = await bcrypt.hash(this.password, 10); // here 10 is salting value
+    };
+    next();
+})
+
+
+
+// thsi User is indicates the schema name
 const User = mongoose.model("User", userSchema)
 
 export default User;

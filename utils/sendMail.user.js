@@ -4,6 +4,7 @@ dotenv.config()
 
 
 const sendVerificationMail = async (email, token) => {
+  
     const transporter = nodemailer.createTransport({
         host: process.env.MAILTRAP_HOST,
         port: process.env.MAILTRAP_PORT,
@@ -11,9 +12,13 @@ const sendVerificationMail = async (email, token) => {
         auth: {
           user: process.env.MAILTRAP_USERNAME,
           pass: process.env.MAILTRAP_PASSWORD,
-        },
+        }
+        // tls: {
+        //   ciphers:'SSLv3'
+        // }
       });
 
+    
     const mailOption = {
         from: process.env.MAILTRAP_SENDEREMAIL,
         to: email,
@@ -22,13 +27,14 @@ const sendVerificationMail = async (email, token) => {
         ${process.env.BASE_URL}/api/v1/users/verify/${token}
         `,
       };
-
-      
+    
+    console.log("mailoptions ");
+    
 
     try {
         await transporter.sendMail(mailOption);
     } catch (error) {
-        console.log(`Error accured while sending verification email`)
+        console.log(`Error accured while sending verification email ${error}`)
     }
 }
 
